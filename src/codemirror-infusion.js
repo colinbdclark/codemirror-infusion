@@ -43,22 +43,9 @@
 
         invokers: {
             createEditor: "CodeMirror.fromTextArea({that}.container.0, {arguments}.0)",
-            
             getContent: "fluid.codeMirror.getContent({that}.editor)",
-            
             setContent: "fluid.codeMirror.setContent({that}.editor, {arguments}.0)",
-            
-            isEmpty: "fluid.codeMirror.isEmpty!({that}.editor)",
-            
-            setContent: {
-                funcName: "flock.ui.codeEditor.cm.setContent",
-                args: ["{arguments}.0", "{that}.editor", "{that}.events.afterContentReplaced.fire"]
-            },
-
-            getContent: {
-                funcName: "flock.ui.codeEditor.cm.getContent",
-                args: ["{that}.editor"]
-            }
+            isEmpty: "fluid.codeMirror.isEmpty!({that}.editor)"
         }
     });
 
