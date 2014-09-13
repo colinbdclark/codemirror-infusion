@@ -162,4 +162,4 @@
         );
         that.showLintMarkers(!that.isEmpty());
     };
-});
+}());
