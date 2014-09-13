@@ -4,6 +4,7 @@
     "main": "src/codemirror-infusion.js",
     "ignore": [".gitignore"],
     "dependencies": {
-        "codemirror": "4.5.0"
+        "codemirror": "4.5.0",
+        "jsonlint": "1.6.0"
     }
 }
