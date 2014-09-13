@@ -1,0 +1,9 @@
+{
+    "name": "codemirror-infusion",
+    "version": "1.0.0",
+    "main": "src/codemirror-infusion.js",
+    "ignore": [".gitignore"],
+    "dependencies": {
+        "codemirror": "4.5.0"
+    }
+}
