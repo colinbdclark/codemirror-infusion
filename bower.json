@@ -2,7 +2,7 @@
     "name": "codemirror-infusion",
     "version": "1.0.0",
     "main": "src/codemirror-infusion.js",
-    "ignore": [".gitignore"],
+    "ignore": [".gitignore", "demo"],
     "dependencies": {
         "codemirror": "4.5.0",
         "jsonlint": "1.6.0"

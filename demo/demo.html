@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CodeMirror Infusion Demo</title>
+        <meta charset="UTF-8" />
+
+        <link rel="stylesheet" href="../bower_components/codemirror/lib/codemirror.css" />
+        <link rel="stylesheet" href="../bower_components/codemirror/addon/lint/lint.css" />
+
+        <script src="third-party/jquery/js/jquery-2.0.0.js"></script>
+        <script src="../bower_components/codemirror/lib/codemirror.js"></script>
+        <script src="../bower_components/codemirror/mode/javascript/javascript.js"></script>
+        <script src="../bower_components/codemirror/addon/lint/lint.js"></script>
+        <script src="../bower_components/codemirror/addon/lint/json-lint.js"></script>
+        <script src="../bower_components/jsonlint/web/jsonlint.js"></script>
+
+        <script src="third-party/infusion/js/Fluid.js"></script>
+        <script src="third-party/infusion/js/FluidDocument.js"></script>
+        <script src="third-party/infusion/js/FluidDOMUtilities.js"></script>
+        <script src="third-party/infusion/js/FluidDebugging.js"></script>
+        <script src="third-party/infusion/js/FluidIoC.js"></script>
+        <script src="third-party/infusion/js/DataBinding.js"></script>
+        <script src="third-party/infusion/js/ModelTransformation.js"></script>
+        <script src="third-party/infusion/js/ModelTransformationTransforms.js"></script>
+        <script src="third-party/infusion/js/FluidView.js"></script>
+
+        <script src="../src/codemirror-infusion.js"></script>    </head>
+
+    <body>
+        <h1>CodeMirror Infusion Demo</h1>
+
+        <div id="editor"></div>
+
+        <script>
+            window.cm = fluid.lintingCodeMirror("#editor", {
+                mode: "application/json",
+                autoCloseBrackets: true,
+                matchBrackets: true,
+                smartIndent: true,
+                theme: "flockingcm",
+                indentUnit: 4,
+                tabSize: 4,
+                lineNumbers: true,
+                gutters: ["CodeMirror-lint-markers"]
+            });
+        </script>
+    </body>
+</html>

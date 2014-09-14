@@ -42,10 +42,17 @@
         },
 
         invokers: {
-            createEditor: "CodeMirror.fromTextArea({that}.container.0, {arguments}.0)",
+            createEditor: "CodeMirror({that}.container.0, {arguments}.0)",
             getContent: "fluid.codeMirror.getContent({that}.editor)",
             setContent: "fluid.codeMirror.setContent({that}.editor, {arguments}.0)",
             isEmpty: "fluid.codeMirror.isEmpty!({that}.editor)"
+        }
+    });
+
+    fluid.defaults("fluid.codeMirror.textArea", {
+        gradeNames: ["fluid.littleComponent", "autoInit"],
+        invokers: {
+            createEditor: "CodeMirror.fromTextArea({that}.container.0, {arguments}.0)"
         }
     });
 
@@ -81,7 +88,7 @@
     fluid.codeMirror.createEditor = function (containerEl, options) {
         return CodeMirror.fromTextArea(containerEl, options);
     };
-    
+
     fluid.codeMirror.makeEventListener = function (that, event) {
         return function () {
             var args = fluid.makeArray(arguments);
