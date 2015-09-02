@@ -1,6 +1,6 @@
 {
     "name": "codemirror-infusion",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "description": "An Infusion component wrapper for CodeMirror",
     "main": "src/codemirror-infusion.js",
     "license": "(BSD-3-Clause OR ECL-2.0)",
@@ -17,6 +17,8 @@
     "readmeFilename": "README.md",
     "dependencies": {
         "codemirror": "4.5.0",
-        "jsonlint": "1.6.0"
+        "jsonlint": "1.6.0",
+        "jquery": "2.1.4",
+        "infusion": "colinbdclark/infusion#FLUID-5745"
     }
 }

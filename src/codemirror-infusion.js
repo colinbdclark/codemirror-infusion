@@ -2,7 +2,7 @@
     "use strict";
 
     fluid.defaults("fluid.codeMirror", {
-        gradeNames: ["fluid.viewComponent", "autoInit"],
+        gradeNames: "fluid.viewComponent",
 
         codeMirrorOpts: [
             "lineNumbers",
@@ -45,19 +45,19 @@
             createEditor: "CodeMirror({that}.container.0, {arguments}.0)",
             getContent: "fluid.codeMirror.getContent({that}.editor)",
             setContent: "fluid.codeMirror.setContent({that}.editor, {arguments}.0)",
-            isEmpty: "fluid.codeMirror.isEmpty!({that}.editor)"
+            isEmpty: "fluid.codeMirror.isEmpty({that}.editor)"
         }
     });
 
     fluid.defaults("fluid.codeMirror.textArea", {
-        gradeNames: ["fluid.littleComponent", "autoInit"],
+        gradeNames: "fluid.component",
         invokers: {
             createEditor: "CodeMirror.fromTextArea({that}.container.0, {arguments}.0)"
         }
     });
 
     fluid.defaults("fluid.lintingCodeMirror", {
-        gradeNames: ["fluid.codeMirror", "autoInit"],
+        gradeNames: "fluid.codeMirror",
 
         events: {
             onUpdateLinting: null,
@@ -74,7 +74,7 @@
         },
 
         invokers: {
-            showLintMarkers: "fluid.codeMirror.showLintMarkers!({that}, {arguments}.0, {arguments}.1)",
+            showLintMarkers: "fluid.codeMirror.showLintMarkers({that}, {arguments}.0, {arguments}.1)",
         },
 
         // Options to be passed raw to the codeMirror linting helper;
