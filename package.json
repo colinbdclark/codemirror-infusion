@@ -19,6 +19,6 @@
         "codemirror": "4.5.0",
         "jsonlint": "1.6.0",
         "jquery": "2.1.4",
-        "infusion": "colinbdclark/infusion#FLUID-5745"
+        "infusion": "fluid-project/infusion#a1e3d601478e57276d4143fca5bcbe00f9c6b0cd"
     }
 }
