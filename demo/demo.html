@@ -5,7 +5,9 @@
         <meta charset="UTF-8" />
 
         <link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css" />
+        <link rel="stylesheet" href="../node_modules/codemirror/theme/monokai.css" />
         <link rel="stylesheet" href="../node_modules/codemirror/addon/lint/lint.css" />
+        <link rel="stylesheet" href="demo.css" />
 
         <script src="../node_modules/jquery/dist/jquery.js"></script>
         <script src="../node_modules/codemirror/lib/codemirror.js"></script>
@@ -28,21 +30,39 @@
     </head>
 
     <body>
-        <h1>CodeMirror Infusion Demo</h1>
-
+        <h1>CodeMirror Infusion JSON Editor</h1>
         <div id="editor"></div>
 
         <script>
             window.cm = fluid.lintingCodeMirror("#editor", {
+                mergePolicy: {
+                    "value": "noexpand"
+                },
+
                 mode: "application/json",
                 autoCloseBrackets: true,
                 matchBrackets: true,
                 smartIndent: true,
-                theme: "flockingcm",
+                theme: "monokai",
                 indentUnit: 4,
                 tabSize: 4,
                 lineNumbers: true,
-                gutters: ["CodeMirror-lint-markers"]
+                gutters: ["CodeMirror-lint-markers"],
+                autofocus: true,
+                value: "{\n    \"cat\": {\n        \"says\": \"meow!\"\n    }\n}\n",
+                codeMirrorOpts: [
+                    "lineNumbers",
+                    "mode",
+                    "gutters",
+                    "autoCloseBrackets",
+                    "tabSize",
+                    "indentUnit",
+                    "theme",
+                    "smartIndent",
+                    "matchBrackets",
+                    "autofocus",
+                    "value"
+                ]
             });
         </script>
     </body>
