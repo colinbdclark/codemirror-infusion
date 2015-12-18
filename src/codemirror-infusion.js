@@ -4,17 +4,18 @@
     fluid.defaults("fluid.codeMirror", {
         gradeNames: "fluid.viewComponent",
 
-        codeMirrorOpts: [
-            "lineNumbers",
-            "mode",
-            "gutters",
-            "autoCloseBrackets",
-            "tabSize",
-            "indentUnit",
-            "theme",
-            "smartIndent",
-            "matchBrackets"
-        ],
+        codeMirrorOptions: {
+            "lineNumbers": true,
+            "mode": true,
+            "gutters": true,
+            "autoCloseBrackets": true,
+            "tabSize": true,
+            "indentUnit": true,
+            "theme": true,
+            "smartIndent": true,
+            "matchBrackets": true,
+            "autofocus": true
+        },
 
         // We relay all raw CodeMirror events with the additional argument "that" in 0th place;
         // the rest are shifted one to the right.
@@ -98,7 +99,7 @@
     };
 
     fluid.codeMirror.create = function (that) {
-        var opts = fluid.filterKeys($.extend({}, that.options), that.options.codeMirrorOpts);
+        var opts = fluid.filterKeys($.extend({}, that.options), fluid.keys(that.options.codeMirrorOptions));
         var events = that.options.codeMirrorEvents;
 
         for (var i = 0; i < events.length; ++ i) {
@@ -169,4 +170,5 @@
         );
         that.showLintMarkers(!that.isEmpty());
     };
+    
 }());

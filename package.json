@@ -19,6 +19,7 @@
         "codemirror": "5.6.0",
         "jsonlint": "1.6.0",
         "jquery": "2.1.4",
-        "infusion": "fluid-project/infusion#a1e3d601478e57276d4143fca5bcbe00f9c6b0cd"
+        "infusion": "2.0.0-dev.20151211T025229Z.eabb4fc",
+        "json5": "git://github.com/amb26/json5.git#01b0df7202ab41b351da2281b1a94e7d98d8f085"
     }
 }

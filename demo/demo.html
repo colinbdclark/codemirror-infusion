@@ -15,6 +15,7 @@
         <script src="../node_modules/codemirror/addon/lint/lint.js"></script>
         <script src="../node_modules/codemirror/addon/lint/json-lint.js"></script>
         <script src="../node_modules/jsonlint/lib/jsonlint.js"></script>
+        <script src="../node_modules/json5/lib/json5.js"></script>
 
         <script src="../node_modules/infusion/src/framework/core/js/Fluid.js"></script>
         <script src="../node_modules/infusion/src/framework/core/js/FluidDocument.js"></script>
@@ -26,44 +27,20 @@
         <script src="../node_modules/infusion/src/framework/core/js/ModelTransformationTransforms.js"></script>
         <script src="../node_modules/infusion/src/framework/core/js/FluidView.js"></script>
 
+        <script src="../src/codemirror-fork-javascript-mode.js"></script>
+        <script src="../src/json5-lint.js"></script>
         <script src="../src/codemirror-infusion.js"></script>
+        
+        <script src="./demo.js"></script>
     </head>
 
     <body>
         <h1>CodeMirror Infusion JSON Editor</h1>
+        <div id="content-type">Content Type: <select><option value="application/json">JSON</option><option value="application/json5">JSON5</option></select></div>
         <div id="editor"></div>
 
         <script>
-            window.cm = fluid.lintingCodeMirror("#editor", {
-                mergePolicy: {
-                    "value": "noexpand"
-                },
-
-                mode: "application/json",
-                autoCloseBrackets: true,
-                matchBrackets: true,
-                smartIndent: true,
-                theme: "monokai",
-                indentUnit: 4,
-                tabSize: 4,
-                lineNumbers: true,
-                gutters: ["CodeMirror-lint-markers"],
-                autofocus: true,
-                value: "{\n    \"cat\": {\n        \"says\": \"meow!\"\n    }\n}\n",
-                codeMirrorOpts: [
-                    "lineNumbers",
-                    "mode",
-                    "gutters",
-                    "autoCloseBrackets",
-                    "tabSize",
-                    "indentUnit",
-                    "theme",
-                    "smartIndent",
-                    "matchBrackets",
-                    "autofocus",
-                    "value"
-                ]
-            });
+            var editor = demo.lintingCodeMirror("#editor");
         </script>
     </body>
 </html>
