@@ -10,7 +10,7 @@ A [Fluid Infusion](https://github.com/fluid-project/infusion) wrapper for the Co
 
 ## Using it in your own project
 
-CodeMirror-Infusion is available via both the [npm](npmjs.org) and [bower](bower.io) package managers.
+CodeMirror-Infusion is available via the [npm](npmjs.org) package manager.
 
 ### Installing with npm
 
@@ -21,15 +21,3 @@ Include codemirror-infusion in your project's <code>package.json</code> file:
     }
 
 In your project's root, run <code>npm install</code> to install your dependencies.
-
-### Installing with Bower
-
-Include codemirror-infusion in your project's <code>bower.json</code> file:
-
-    "dependencies": {
-        "codemirror-infusion": "5.6.0"
-    }
-
-In your project's root, run <code>bower install</code> to install your dependencies.
-
-Unfortunately Infusion itself isn't distributed via a Bower package, so you'll need to provide your own copy via an [Infusion custom build](https://github.com/fluid-project/infusion#how-do-i-create-an-infusion-package) or use npm to install it.

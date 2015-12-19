@@ -21,5 +21,13 @@
         "jquery": "2.1.4",
         "infusion": "2.0.0-dev.20151211T025229Z.eabb4fc",
         "json5": "git://github.com/amb26/json5.git#01b0df7202ab41b351da2281b1a94e7d98d8f085"
+    },
+    "devDependencies": {
+        "node-jqunit": "~1.1.3",
+        "grunt-shell": "0.6.4",
+        "grunt-contrib-jshint": "0.9.0",
+        "grunt-jsonlint": "1.0.4",
+        "grunt-gpii": "1.0.0",
+        "grunt": "0.4.5"
     }
 }

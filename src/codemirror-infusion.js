@@ -1,4 +1,12 @@
-(function () {
+/*! CodeMirror components for Fluid Infusion
+ *  Copyright 2015, Antranig Basman
+ *  Copyright 2015, Colin Clark
+ *  Dual licensed under the MIT and GPL Version 2 licenses.
+ */
+
+/*global fluid, jQuery*/
+
+(function ($) {
     "use strict";
 
     fluid.defaults("fluid.codeMirror", {
@@ -29,6 +37,7 @@
         ],
 
         events: {
+            onAssembleCodeMirrorOptions: null,
             onCreateCodeMirror: null,
             onChange: null,
             onCursorActivity: null,
@@ -39,7 +48,7 @@
         },
 
         listeners: {
-            onCreate: "fluid.codeMirror.create"
+            "onCreate.createCodeMirror": "fluid.codeMirror.create"
         },
 
         invokers: {
@@ -57,45 +66,29 @@
         }
     });
 
-    fluid.defaults("fluid.lintingCodeMirror", {
-        gradeNames: "fluid.codeMirror",
-
-        events: {
-            onUpdateLinting: null,
-
-            // An event derived from "onUpdateLinting" which fires (that, true/false, etc.)
-            // depending on whether the editor contents were linted as valid or not.
-            // Currently this is detected by having any lint markers.
-            onValidatedContentChange: null
-        },
-
-        listeners: {
-            onCreateCodeMirror: "fluid.codeMirror.onCreateLinting",
-            "onUpdateLinting.onValidatedContentChange": "fluid.codeMirror.onUpdateLinting"
-        },
-
-        invokers: {
-            showLintMarkers: "fluid.codeMirror.showLintMarkers({that}, {arguments}.0, {arguments}.1)",
-        },
-
-        // Options to be passed raw to the codeMirror linting helper;
-        // can accept funcs such as getAnnotation, formatAnnotation etc.
-        lint: {
-            tooltips: true,
-            async: false
-        }
-    });
-
-    fluid.codeMirror.createEditor = function (containerEl, options) {
-        return CodeMirror.fromTextArea(containerEl, options);
-    };
-
     fluid.codeMirror.makeEventListener = function (that, event) {
         return function () {
             var args = fluid.makeArray(arguments);
             args.unshift(that);
             return event.fire.apply(null, args);
         };
+    };
+
+    // Acquire all of the initial values of recognised CodeMirror option values, and copy them into our model
+    // This forms a kind of "late initial transaction" for these model values. We then begin listening to further changes
+    // to them and applying them back into our model.
+    fluid.codeMirror.initOptionsModel = function (that, editor) {
+        var trans = that.applier.initiate();
+        fluid.each(that.options.codeMirrorOptions, function (valoo, key) {
+            var optValue = editor.getOption(key);
+            trans.change(["codeMirrorOptions", key], optValue);
+        });
+        trans.commit();
+        that.applier.modelChanged.addListener("codeMirrorOptions.*", function (value, oldValue, segs) {
+            console.log("GOT CODEMIRROR OPTIONS CHANGE ", value);
+            editor.setOption(segs[1], value);
+        });
+        console.log("Acquired initial options model ", that.model.codeMirrorOptions);
     };
 
     fluid.codeMirror.create = function (that) {
@@ -106,17 +99,13 @@
             var event = events[i];
             opts[event] = fluid.codeMirror.makeEventListener(that, that.events[event]);
         }
-
-        that.events.onCreateCodeMirror.fire(that, opts);
+        that.events.onAssembleCodeMirrorOptions.fire(that, opts);
         that.editor = that.createEditor(opts);
         that.wrapper = that.editor.getWrapperElement();
+        that.events.onCreateCodeMirror.fire(that, that.editor);
+        that.codeMirrorInitialised = true;
     };
 
-    fluid.codeMirror.onCreateLinting = function (that, opts) {
-        var lint = fluid.copy(that.options.lint);
-        lint.onUpdateLinting = fluid.codeMirror.makeEventListener(that, that.events.onUpdateLinting);
-        opts.lint = lint;
-    };
 
     fluid.codeMirror.getContent = function (editor) {
         return editor.getDoc().getValue();
@@ -141,6 +130,54 @@
 
         var first = doc.getLine(0);
         return $.trim(first).length === 0;
+    };
+
+    /** CODEMIRROR GRADE WITH LINTING SUPPORT **/
+
+    fluid.defaults("fluid.lintingCodeMirror", {
+        gradeNames: "fluid.codeMirror",
+
+        events: {
+            onUpdateLinting: null,
+            // An event derived from "onUpdateLinting" which fires (that, true/false, etc.)
+            // depending on whether the editor contents were linted as valid or not.
+            // Currently this is detected by having any lint markers.
+            onValidatedContentChange: null
+        },
+
+        listeners: {
+            "onAssembleCodeMirrorOptions.createLinting": "fluid.codeMirror.createLinting",
+            "onCreateCodeMirror.initOptionsModel": "fluid.codeMirror.initOptionsModel",
+            "onUpdateLinting.onValidatedContentChange": "fluid.codeMirror.onUpdateLinting"
+        },
+        modelListeners: {
+            "codeMirrorOptions.mode": "fluid.lintingCodeMirror.performLinting({that})"
+        },
+
+        invokers: {
+            showLintMarkers: "fluid.codeMirror.showLintMarkers({that}, {arguments}.0, {arguments}.1)"
+        },
+
+        // Options to be passed raw to the codeMirror linting helper;
+        // can accept funcs such as getAnnotation, formatAnnotation etc.
+        lint: {
+            tooltips: true,
+            async: false
+        }
+    });
+
+    fluid.lintingCodeMirror.performLinting = function (that) {
+        if (that.codeMirrorInitialised) {
+            fluid.invokeLater(function () { // For some obscure reason a mode change will not be detected until the previous stack returns
+                that.editor.performLint();
+            });
+        }
+    };
+
+    fluid.codeMirror.createLinting = function (that, opts) {
+        var lint = fluid.copy(that.options.lint);
+        lint.onUpdateLinting = fluid.codeMirror.makeEventListener(that, that.events.onUpdateLinting);
+        opts.lint = lint;
     };
 
     fluid.codeMirror.showLintMarkers = function (that, visibility, selfDispatch) {
@@ -170,5 +207,5 @@
         );
         that.showLintMarkers(!that.isEmpty());
     };
-    
-}());
+
+}(jQuery));
