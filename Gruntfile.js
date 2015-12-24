@@ -29,7 +29,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-jsonlint");
     grunt.loadNpmTasks("grunt-shell");
     grunt.loadNpmTasks("grunt-gpii");
-    
-    grunt.registerTask("lint", "Apply jshint and jsonlint", ["jshint", "jsonlint"]);
 
+    grunt.registerTask("lint", "Apply jshint and jsonlint", ["jshint", "jsonlint"]);
+    grunt.registerTask("default", ["lint"]);
 };
