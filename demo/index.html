@@ -5,7 +5,9 @@
         <meta charset="UTF-8" />
 
         <link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css" />
+        <link rel="stylesheet" href="../node_modules/codemirror/theme/monokai.css" />
         <link rel="stylesheet" href="../node_modules/codemirror/addon/lint/lint.css" />
+        <link rel="stylesheet" href="demo.css" />
 
         <script src="../node_modules/jquery/dist/jquery.js"></script>
         <script src="../node_modules/codemirror/lib/codemirror.js"></script>
@@ -13,6 +15,7 @@
         <script src="../node_modules/codemirror/addon/lint/lint.js"></script>
         <script src="../node_modules/codemirror/addon/lint/json-lint.js"></script>
         <script src="../node_modules/jsonlint/lib/jsonlint.js"></script>
+        <script src="../node_modules/json5/lib/json5.js"></script>
 
         <script src="../node_modules/infusion/src/framework/core/js/Fluid.js"></script>
         <script src="../node_modules/infusion/src/framework/core/js/FluidDocument.js"></script>
@@ -24,26 +27,20 @@
         <script src="../node_modules/infusion/src/framework/core/js/ModelTransformationTransforms.js"></script>
         <script src="../node_modules/infusion/src/framework/core/js/FluidView.js"></script>
 
+        <script src="../forked-cm-src/codemirror-fork-javascript-mode.js"></script>
+        <script src="../forked-cm-src/json5-lint.js"></script>
         <script src="../src/codemirror-infusion.js"></script>
+
+        <script src="./demo.js"></script>
     </head>
 
     <body>
-        <h1>CodeMirror Infusion Demo</h1>
-
+        <h1>CodeMirror Infusion JSON Editor</h1>
+        <div id="content-type">Content Type: <select><option value="application/json">JSON</option><option value="application/json5">JSON5</option></select></div>
         <div id="editor"></div>
 
         <script>
-            window.cm = fluid.lintingCodeMirror("#editor", {
-                mode: "application/json",
-                autoCloseBrackets: true,
-                matchBrackets: true,
-                smartIndent: true,
-                theme: "flockingcm",
-                indentUnit: 4,
-                tabSize: 4,
-                lineNumbers: true,
-                gutters: ["CodeMirror-lint-markers"]
-            });
+            var demoHolder = demo.lintingCodeMirror.holder();
         </script>
     </body>
 </html>
