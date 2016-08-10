@@ -13,22 +13,18 @@ module.exports = function (grunt) {
     "use strict";
 
     grunt.initConfig({
-        jshint: {
-            all: ["src/**/*.js", "tests/**/*.js", "demo/**/*.js"],
-            buildScripts: ["Gruntfile.js"],
-            options: {
-                jshintrc: true
-            }
+        eslint: {
+            src: ["./src/**/*.js", "./tests/**/*.js", "./*.js"]
         },
         jsonlint: {
             src: ["src/**/*.json", "tests/**/*.json", "demo/**/*.json"]
         }
     });
 
-    grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks("fluid-grunt-eslint");
     grunt.loadNpmTasks("grunt-jsonlint");
     grunt.loadNpmTasks("grunt-shell");
 
-    grunt.registerTask("lint", "Apply jshint and jsonlint", ["jshint", "jsonlint"]);
+    grunt.registerTask("lint", "Apply eslint and jsonlint", ["jshint", "jsonlint"]);
     grunt.registerTask("default", ["lint"]);
 };
