@@ -48,10 +48,14 @@
         },
 
         listeners: {
-            "onCreate.createCodeMirror": "fluid.codeMirror.create"
+            "onCreate.createCodeMirror": "fluid.codeMirror.create",
+            "onCreateCodeMirror.bindBlurHandler": {
+                funcName: "fluid.codeMirror.bindBlurHandler",
+                args:    ["{that}", "{arguments}.1"] // editor
+            }
         },
-
         invokers: {
+            handleBlur: "fluid.codeMirror.handleBlur({that})",
             createEditor: "CodeMirror({that}.container.0, {arguments}.0)",
             getContent: "fluid.codeMirror.getContent({that}.editor)",
             setContent: "fluid.codeMirror.setContent({that}.editor, {arguments}.0)",
@@ -106,6 +110,36 @@
         that.codeMirrorInitialised = true;
     };
 
+    /**
+     *
+     * CodeMirror does not provide a means of exiting the editor, and traps tabs.  This combination makes it a dead end
+     * from which keyboard navigation users can only release themselves by reloading the screen.  It also means that
+     * keyboard navigation users can never navigate beyond the editor.
+     *
+     * This function is called when a user hits the `Esc` key from within the editor, and focuses on the next focusable
+     * element after the editor.  If there is no focusable element after the editor, our next choice is the first
+     * focusable element in the body.  This approximates what would happen if the user was able to hit tab again to
+     * leave the editor.
+     *
+     * Note that this introduces a requirement on jQuery UI, which provides the `:focusable` selector.
+     *
+     * @param that - The component itself.
+     *
+     */
+    fluid.codeMirror.handleBlur = function (that) {
+        var elementToFocusOn = $(that.container).next(":focusable");
+        if (!elementToFocusOn || elementToFocusOn.length === 0) {
+            elementToFocusOn =  $(document).find(":focusable")[0];
+        }
+
+        elementToFocusOn.focus();
+    };
+
+    fluid.codeMirror.bindBlurHandler = function (that, editor) {
+        editor.setOption("extraKeys", {
+            Esc: that.handleBlur
+        });
+    };
 
     fluid.codeMirror.getContent = function (editor) {
         return editor.getDoc().getValue();
