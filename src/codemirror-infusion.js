@@ -99,7 +99,7 @@
         var opts = fluid.filterKeys($.extend({}, that.options), fluid.keys(that.options.codeMirrorOptions));
         var events = that.options.codeMirrorEvents;
 
-        for (var i = 0; i < events.length; ++ i) {
+        for (var i = 0; i < events.length; ++i) {
             var event = events[i];
             opts[event] = fluid.codeMirror.makeEventListener(that, that.events[event]);
         }
@@ -221,7 +221,7 @@
             // the linting may apply during the construction process of the editor,
             // during which we can't find its parent element.
             if (!selfDispatch) {
-                setTimeout(function() {
+                setTimeout(function () {
                     that.showLintMarkers(visibility, true);
                 }, 1);
             }
@@ -242,4 +242,4 @@
         that.showLintMarkers(!that.isEmpty());
     };
 
-}(jQuery));
+})(jQuery);

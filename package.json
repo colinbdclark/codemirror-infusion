@@ -24,12 +24,13 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "codemirror": "5.17.0",
-    "jsonlint": "1.6.2",
-    "jquery": "3.1.0",
     "infusion": "2.0.0-dev.20160519T222603Z.754d2c6",
-    "json5": "0.5.0"
+    "jquery": "3.1.0",
+    "json5": "0.5.0",
+    "jsonlint": "1.6.2"
   },
   "devDependencies": {
+    "chromedriver": "^2.25.3",
     "fluid-grunt-eslint": "18.1.1",
     "gpii-express": "git://github.com/the-t-in-rtf/gpii-express#bf17c0517d10902f61aa2ba491f29eaef49cf1be",
     "gpii-webdriver": "git://github.com/the-t-in-rtf/gpii-webdriver#f7178f0ddbb84d182c9590b91ddaedadfb4fb379",
