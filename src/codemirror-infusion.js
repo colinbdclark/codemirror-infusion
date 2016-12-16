@@ -197,6 +197,10 @@
         lint: {
             tooltips: true,
             async: false
+        },
+
+        selectors: {
+            errorMark: ".CodeMirror-lint-mark-error"
         }
     });
 

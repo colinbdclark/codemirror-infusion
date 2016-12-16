@@ -37,38 +37,75 @@
 
     fluid.codeMirror.tests.testInstantationForAllGrades(fluid.codeMirror.tests.componentGrades);
 
-    fluid.defaults("fluid.codeMirror.tests.validationErrorCM", {
-        gradeNames: "fluid.lintingCodeMirror",
+    fluid.defaults("fluid.codeMirror.tests.jsonValidation", {
+        gradeNames: "fluid.test.testCaseHolder",
 
-        value: "{}",
-        mode: "application/json",
-        listeners: {
-            "onValidatedContentChange.assertIsValid": {
-                funcName: "jqUnit.assertFalse",
-                args: [
-                    "A validation error should occur when invalid content is set.",
-                    "{arguments}.1"
+        mergePolicy: {
+            "invalidJSON": "noexpand"
+        },
+
+        invalidJSON: "{cat: \"meow\"}",
+
+        modules: [
+            {
+                name: "JSON validation",
+                tests: [
+                    {
+                        name: "set the content to an invalid JSON string",
+                        expect: 3,
+                        sequence: [
+                            {
+                                funcName: "fluid.codeMirror.tests.assertNumErrorMarkers",
+                                args: [0, "{codeMirror}.dom.errorMark"]
+                            },
+                            {
+                                func: "{codeMirror}.setContent",
+                                args: ["{that}.options.invalidJSON"]
+                            },
+                            {
+                                event: "{codeMirror}.events.onValidatedContentChange",
+                                listener: "fluid.codeMirror.tests.assertInvalid"
+                            },
+                            {
+                                funcName: "fluid.codeMirror.tests.assertNumErrorMarkers",
+                                args: [1, "{codeMirror}.dom.errorMark"]
+                            }
+                        ]
+                    }
                 ]
-            },
-            "onValidatedContentChange.start": {
-                priority: "after:assertIsValid",
-                funcName: "jqUnit.start"
-            },
-            "onValidatedContentChange.destroyComponent": {
-                priority: "after:start",
-                func: "{that}.destroy"
             }
-        }
+        ]
     });
 
-    jqUnit.asyncTest("JSON linting validation error", function () {
-        jqUnit.expect(2);
+    fluid.codeMirror.tests.assertInvalid = function (that, isValid) {
+        jqUnit.assertFalse("A validation error should occur when invalid content is set.",
+            isValid);
+    };
 
-        var cm = fluid.codeMirror.tests.validationErrorCM("#code");
+    fluid.codeMirror.tests.assertNumErrorMarkers = function (expected, markers) {
+        jqUnit.assertEquals(
+            "There should be " + expected + " error marker" +
+            (expected > 1 || expected === 0 ? "s": ""), expected, markers.length);
+    };
 
-        jqUnit.assertTrue("There are no validation errors at the start.",
-            $(cm.wrapper).find(".CodeMirror-lint-marker-error"));
+    fluid.defaults("fluid.codeMirror.tests.validationTestingEnvironment", {
+        gradeNames: "fluid.test.testEnvironment",
 
-        cm.setContent("{cat: \"meow\"}");
+        markupFixture: "#main",
+
+        components: {
+            codeMirror: {
+                type: "fluid.lintingCodeMirror",
+                container: "#code",
+                options: {
+                    value: "{}",
+                    mode: "application/json"
+                }
+            },
+
+            tester: {
+                type: "fluid.codeMirror.tests.jsonValidation"
+            }
+        }
     });
 })();
