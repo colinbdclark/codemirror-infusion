@@ -7,9 +7,9 @@ require("./fixtures");
 
 fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
     gradeNames: ["gpii.test.webdriver.caseHolder"],
-    nextFocusableFile:    "%codemirror-infusion/tests/content/keyboard-navigation/next-focusable.html",
-    prevFocusableFile:    "%codemirror-infusion/tests/content/keyboard-navigation/prev-focusable.html",
-    noOtherFocusableFile: "%codemirror-infusion/tests/content/keyboard-navigation/no-other-focusable.html",
+    nextFocusableFile:    "%codemirror-infusion/tests/acceptance/content/keyboard-navigation/next-focusable.html",
+    prevFocusableFile:    "%codemirror-infusion/tests/acceptance/content/keyboard-navigation/prev-focusable.html",
+    noOtherFocusableFile: "%codemirror-infusion/tests/acceptance/content/keyboard-navigation/no-other-focusable.html",
     rawModules: [{
         name: "Testing keyboard navigation...",
         tests: [

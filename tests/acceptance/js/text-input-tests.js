@@ -7,7 +7,7 @@ require("./fixtures");
 
 fluid.defaults("fluid.tests.codeMirror.textInput.caseHolder", {
     gradeNames: ["gpii.test.webdriver.caseHolder"],
-    testHtmlFile: "%codemirror-infusion/tests/content/keyboard-navigation/no-other-focusable.html",
+    testHtmlFile: "%codemirror-infusion/tests/acceptance/content/keyboard-navigation/no-other-focusable.html",
     rawModules: [{
         name: "Testing text input...",
         tests: [

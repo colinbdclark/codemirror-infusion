@@ -10,7 +10,9 @@
     "Tony Atkins"
   ],
   "scripts": {
-    "test": "node tests/all-tests.js"
+    "test": "npm run browser-test && npm run acceptance-test",
+    "browser-test": "testem ci --file tests/unit/testem.json",
+    "acceptance-test": "node tests/all-acceptance-tests.js"
   },
   "repository": {
     "type": "git",
