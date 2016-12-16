@@ -89,10 +89,8 @@
         });
         trans.commit();
         that.applier.modelChanged.addListener("codeMirrorOptions.*", function (value, oldValue, segs) {
-            console.log("GOT CODEMIRROR OPTIONS CHANGE ", value);
             editor.setOption(segs[1], value);
         });
-        console.log("Acquired initial options model ", that.model.codeMirrorOptions);
     };
 
     fluid.codeMirror.create = function (that) {
