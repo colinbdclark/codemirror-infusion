@@ -33,7 +33,7 @@
     "chromedriver": "^2.25.3",
     "fluid-grunt-eslint": "18.1.1",
     "gpii-express": "1.0.1",
-    "gpii-webdriver": "git://github.com/the-t-in-rtf/gpii-webdriver#f7178f0ddbb84d182c9590b91ddaedadfb4fb379",
+    "gpii-webdriver": "1.0.0-dev.20161125T164054Z.becc872",
     "grunt": "1.0.1",
     "grunt-jsonlint": "1.1.0",
     "kettle": "1.2.2",

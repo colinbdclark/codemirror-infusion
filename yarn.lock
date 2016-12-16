@@ -703,9 +703,9 @@ gpii-express@1.0.1:
     infusion "2.0.0-dev.20161027T155641Z.0bcd507"
     resolve "1.1.7"
 
-"gpii-webdriver@git://github.com/the-t-in-rtf/gpii-webdriver#36e2ddc801a9f18151cc535e7da6580469416a4b":
-  version "1.0.0"
-  resolved "git://github.com/the-t-in-rtf/gpii-webdriver#36e2ddc801a9f18151cc535e7da6580469416a4b"
+gpii-webdriver@1.0.0-dev.20161125T164054Z.becc872:
+  version "1.0.0-dev.20161125T164054Z.becc872"
+  resolved "https://registry.yarnpkg.com/gpii-webdriver/-/gpii-webdriver-1.0.0-dev.20161125T164054Z.becc872.tgz#a6c23b792380393cb53d352028f4c027fcfad60f"
   dependencies:
     accessibility-developer-tools "2.11.0"
     axe-core "2.0.7"
