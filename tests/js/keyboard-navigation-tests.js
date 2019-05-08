@@ -23,7 +23,7 @@ fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
                     {
                         event:    "{testEnvironment}.webdriver.events.onGetComplete",
                         listener: "{testEnvironment}.webdriver.actionsHelper",
-                        args:     [{ fnName: "sendKeys", args: [[gpii.webdriver.Key.TAB]]}]
+                        args:     [{ fn: "sendKeys", args: [[gpii.webdriver.Key.TAB]]}]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onActionsHelperComplete",

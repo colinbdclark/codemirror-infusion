@@ -23,20 +23,20 @@
   ],
   "readmeFilename": "README.md",
   "dependencies": {
-    "codemirror": "5.21.0",
-    "infusion": "2.0.0",
-    "jquery": "3.1.1",
-    "json5": "0.5.1",
-    "jsonlint": "1.6.2"
+    "codemirror": "5.46.0",
+    "infusion": "3.0.0-dev.20190328T144119Z.ec44dbfab",
+    "jquery": "3.4.1",
+    "json5": "2.1.0",
+    "jsonlint": "1.6.3"
   },
   "devDependencies": {
-    "chromedriver": "^2.25.3",
-    "fluid-grunt-eslint": "18.1.1",
-    "gpii-express": "1.0.1",
-    "gpii-webdriver": "git://github.com/the-t-in-rtf/gpii-webdriver#f7178f0ddbb84d182c9590b91ddaedadfb4fb379",
-    "grunt": "1.0.1",
+    "chromedriver": "^74.0.0",
+    "fluid-grunt-eslint": "18.1.2",
+    "gpii-express": "1.0.15",
+    "gpii-webdriver": "1.0.2",
+    "grunt": "1.0.4",
     "grunt-jsonlint": "1.1.0",
-    "kettle": "1.2.2",
-    "node-jqunit": "1.1.4"
+    "kettle": "1.10.1",
+    "node-jqunit": "1.1.8"
   }
 }
