@@ -25,7 +25,7 @@
   "dependencies": {
     "codemirror": "5.46.0",
     "infusion": "3.0.0-dev.20190328T144119Z.ec44dbfab",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "json5": "2.1.0",
     "jsonlint": "1.6.3"
   },
