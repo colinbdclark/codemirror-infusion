@@ -1,12 +1,12 @@
 /* eslint-env node */
 "use strict";
 var fluid = require("infusion");
-var gpii  = fluid.registerNamespace("gpii");
+var fluid  = fluid.registerNamespace("fluid");
 
 require("./fixtures");
 
 fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
-    gradeNames: ["gpii.test.webdriver.caseHolder"],
+    gradeNames: ["fluid.test.webdriver.caseHolder"],
     nextFocusableFile:    "%codemirror-infusion/tests/content/keyboard-navigation/next-focusable.html",
     prevFocusableFile:    "%codemirror-infusion/tests/content/keyboard-navigation/prev-focusable.html",
     noOtherFocusableFile: "%codemirror-infusion/tests/content/keyboard-navigation/no-other-focusable.html",
@@ -18,12 +18,12 @@ fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
                 sequence: [
                     {
                         func: "{testEnvironment}.webdriver.get",
-                        args: ["@expand:gpii.test.webdriver.resolveFileUrl({that}.options.noOtherFocusableFile)"]
+                        args: ["@expand:fluid.test.webdriver.resolveFileUrl({that}.options.noOtherFocusableFile)"]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onGetComplete",
                         listener: "{testEnvironment}.webdriver.actionsHelper",
-                        args:     [{ fn: "sendKeys", args: [[gpii.webdriver.Key.TAB]]}]
+                        args:     [{ fn: "sendKeys", args: [[fluid.webdriver.Key.TAB]]}]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onActionsHelperComplete",
@@ -32,7 +32,7 @@ fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onFindElementComplete",
-                        listener: "gpii.test.webdriver.testElementSelected",
+                        listener: "fluid.test.webdriver.testElementSelected",
                         args:     ["The editor should be selected...", "{arguments}.0", true] // message, element, selected
                     }
                 ]
@@ -42,12 +42,12 @@ fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
                 sequence: [
                     {
                         func: "{testEnvironment}.webdriver.get",
-                        args: ["@expand:gpii.test.webdriver.resolveFileUrl({that}.options.nextFocusableFile)"]
+                        args: ["@expand:fluid.test.webdriver.resolveFileUrl({that}.options.nextFocusableFile)"]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onGetComplete",
                         listener: "{testEnvironment}.webdriver.actionsHelper",
-                        args:     [{ fn: "sendKeys", args: [[gpii.webdriver.Key.TAB, gpii.webdriver.Key.ESCAPE]]}]
+                        args:     [{ fn: "sendKeys", args: [[fluid.webdriver.Key.TAB, fluid.webdriver.Key.ESCAPE]]}]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onActionsHelperComplete",
@@ -56,7 +56,7 @@ fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onFindElementComplete",
-                        listener: "gpii.test.webdriver.testElementSelected",
+                        listener: "fluid.test.webdriver.testElementSelected",
                         args:     ["The next focusable element should be selected...", "{arguments}.0", true] // message, element, selected
                     }
                 ]
@@ -66,12 +66,12 @@ fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
                 sequence: [
                     {
                         func: "{testEnvironment}.webdriver.get",
-                        args: ["@expand:gpii.test.webdriver.resolveFileUrl({that}.options.prevFocusableFile)"]
+                        args: ["@expand:fluid.test.webdriver.resolveFileUrl({that}.options.prevFocusableFile)"]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onGetComplete",
                         listener: "{testEnvironment}.webdriver.actionsHelper",
-                        args:     [{ fn: "sendKeys", args: [[gpii.webdriver.Key.TAB, gpii.webdriver.Key.TAB, gpii.webdriver.Key.ESCAPE]]}]
+                        args:     [{ fn: "sendKeys", args: [[fluid.webdriver.Key.TAB, fluid.webdriver.Key.TAB, fluid.webdriver.Key.ESCAPE]]}]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onActionsHelperComplete",
@@ -80,7 +80,7 @@ fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onFindElementComplete",
-                        listener: "gpii.test.webdriver.testElementSelected",
+                        listener: "fluid.test.webdriver.testElementSelected",
                         args:     ["The next focusable element should be selected...", "{arguments}.0", true] // message, element, selected
                     }
                 ]
@@ -90,12 +90,12 @@ fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
                 sequence: [
                     {
                         func: "{testEnvironment}.webdriver.get",
-                        args: ["@expand:gpii.test.webdriver.resolveFileUrl({that}.options.nextFocusableFile)"]
+                        args: ["@expand:fluid.test.webdriver.resolveFileUrl({that}.options.nextFocusableFile)"]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onGetComplete",
                         listener: "{testEnvironment}.webdriver.actionsHelper",
-                        args:     [{ fn: "sendKeys", args: [[gpii.webdriver.Key.TAB, gpii.webdriver.Key.ESCAPE]]}]
+                        args:     [{ fn: "sendKeys", args: [[fluid.webdriver.Key.TAB, fluid.webdriver.Key.ESCAPE]]}]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onActionsHelperComplete",
@@ -104,7 +104,7 @@ fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onFindElementComplete",
-                        listener: "gpii.test.webdriver.testElementSelected",
+                        listener: "fluid.test.webdriver.testElementSelected",
                         args:     ["Focus should still be on the editor...", "{arguments}.0", true] // message, element, selected
                     }
                 ]
@@ -114,7 +114,7 @@ fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.caseHolder", {
 });
 
 fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.testEnvironment", {
-    gradeNames: ["gpii.test.webdriver.testEnvironment"],
+    gradeNames: ["fluid.test.webdriver.testEnvironment"],
     components: {
         webdriver: {
             options: {
@@ -131,4 +131,4 @@ fluid.defaults("fluid.tests.codeMirror.keyboardNavigation.testEnvironment", {
     }
 });
 
-gpii.test.webdriver.allBrowsers({ baseTestEnvironment: "fluid.tests.codeMirror.keyboardNavigation.testEnvironment"});
+fluid.test.webdriver.allBrowsers({ baseTestEnvironment: "fluid.tests.codeMirror.keyboardNavigation.testEnvironment"});

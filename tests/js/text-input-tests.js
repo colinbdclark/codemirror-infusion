@@ -1,12 +1,12 @@
 /* eslint-env node */
 "use strict";
 var fluid = require("infusion");
-var gpii  = fluid.registerNamespace("gpii");
+var fluid  = fluid.registerNamespace("fluid");
 
 require("./fixtures");
 
 fluid.defaults("fluid.tests.codeMirror.textInput.caseHolder", {
-    gradeNames: ["gpii.test.webdriver.caseHolder"],
+    gradeNames: ["fluid.test.webdriver.caseHolder"],
     testHtmlFile: "%codemirror-infusion/tests/content/keyboard-navigation/no-other-focusable.html",
     rawModules: [{
         name: "Testing text input...",
@@ -16,17 +16,17 @@ fluid.defaults("fluid.tests.codeMirror.textInput.caseHolder", {
                 sequence: [
                     {
                         func: "{testEnvironment}.webdriver.get",
-                        args: ["@expand:gpii.test.webdriver.resolveFileUrl({that}.options.testHtmlFile)"]
+                        args: ["@expand:fluid.test.webdriver.resolveFileUrl({that}.options.testHtmlFile)"]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onGetComplete",
                         listener: "{testEnvironment}.webdriver.actionsHelper",
-                        args:     [{ fn: "sendKeys", args: [gpii.webdriver.Key.TAB, "xxx"]}]
+                        args:     [{ fn: "sendKeys", args: [fluid.webdriver.Key.TAB, "xxx"]}]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onActionsHelperComplete",
                         listener: "{testEnvironment}.webdriver.executeScript",
-                        args:     [gpii.test.webdriver.invokeGlobal, "editor.getContent"]
+                        args:     [fluid.test.webdriver.invokeGlobal, "editor.getContent"]
                     },
                     {
                         event:    "{testEnvironment}.webdriver.events.onExecuteScriptComplete",
@@ -40,7 +40,7 @@ fluid.defaults("fluid.tests.codeMirror.textInput.caseHolder", {
 });
 
 fluid.defaults("fluid.tests.codeMirror.textInput.testEnvironment", {
-    gradeNames: ["gpii.test.webdriver.testEnvironment"],
+    gradeNames: ["fluid.test.webdriver.testEnvironment"],
     components: {
         caseHolder: {
             type: "fluid.tests.codeMirror.textInput.caseHolder"
@@ -48,4 +48,4 @@ fluid.defaults("fluid.tests.codeMirror.textInput.testEnvironment", {
     }
 });
 
-gpii.test.webdriver.allBrowsers({ baseTestEnvironment: "fluid.tests.codeMirror.textInput.testEnvironment"});
+fluid.test.webdriver.allBrowsers({ baseTestEnvironment: "fluid.tests.codeMirror.textInput.testEnvironment"});
