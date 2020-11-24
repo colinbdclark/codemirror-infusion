@@ -13,8 +13,12 @@
         <script src="../node_modules/infusion/dist/infusion-all.js"></script>
 
         <script src="../node_modules/codemirror/lib/codemirror.js"></script>
+        <script src="../../node_modules/codemirror/addon/edit/closebrackets.js"></script>
         <script src="../node_modules/codemirror/mode/javascript/javascript.js"></script>
-        <script src="../node_modules/codemirror/addon/lint/lint.js"></script>
+        <script src="../../node_modules/codemirror/mode/javascript/javascript.js"></script>
+        <script src="../../node_modules/codemirror/addon/lint/lint.js"></script>
+        <script src="../../node_modules/jshint/dist/jshint.js"></script>
+        <script src="../../node_modules/codemirror/addon/lint/javascript-lint.js"></script>
         <script src="../node_modules/codemirror/addon/lint/json-lint.js"></script>
         <script src="../node_modules/jsonlint/lib/jsonlint.js"></script>
         <script src="../node_modules/json5/dist/index.js"></script>
@@ -28,7 +32,14 @@
 
     <body>
         <h1>CodeMirror Infusion JSON Editor</h1>
-        <div id="content-type">Content Type: <select><option value="application/json">JSON</option><option value="application/json5">JSON5</option></select></div>
+        <div id="content-type">Content Type:
+            <select>
+                <option value="application/json">JSON</option>
+                <option value="application/json5">JSON5</option>
+                <option value="javascript">JavaScript</option>
+
+            </select>
+        </div>
         <div id="editor"></div>
 
         <script>

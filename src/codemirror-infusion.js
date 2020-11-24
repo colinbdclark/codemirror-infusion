@@ -194,7 +194,8 @@
         // can accept funcs such as getAnnotation, formatAnnotation etc.
         lint: {
             tooltips: true,
-            async: false
+            async: false,
+            options: {}
         }
     });
 
