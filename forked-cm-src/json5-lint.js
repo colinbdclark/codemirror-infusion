@@ -20,7 +20,7 @@ CodeMirror.registerHelper("lint", "json5", function(text, options, cm) {
   try {
     JSON5.parse(text);
   } catch (e) {
-    var messageGeneric = e.message.indexOf(" at line ");
+    var messageGeneric = e.message.indexOf(" at ");
     var message = e.message.substring(0, messageGeneric);
     var line = e.lineNumber - 1, col = e.columnNumber;
     if (e.columnNumber === 0) { // More usefully assign column 0 errors to last character of previous line
@@ -28,10 +28,10 @@ CodeMirror.registerHelper("lint", "json5", function(text, options, cm) {
         var prevLine = cm.doc.getLine(line);
         col = prevLine.length;
     }
-    
+
     found.push({from: CodeMirror.Pos(line, col - 1),
                 to: CodeMirror.Pos(line, col),
-                message: message});      
+                message: message});
   }
   return found;
 });
