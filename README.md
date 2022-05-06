@@ -16,7 +16,7 @@ CodeMirror-Infusion is available via the [npm](npmjs.org) package manager.
 Include codemirror-infusion in your project's <code>package.json</code> file:
 
     "dependencies": {
-        "codemirror-infusion": "2.2.1"
+        "codemirror-infusion": "2.4.1"
     }
 
 In your project's root, run <code>npm install</code> to install your dependencies.
