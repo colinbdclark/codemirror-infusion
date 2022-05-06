@@ -1,11 +1,6 @@
 /* eslint-env node */
 "use strict";
 var fluid = require("infusion");
-
-require("kettle");
-
-require("fluid-express");
-
 require("fluid-webdriver");
 fluid.webdriver.loadTestingSupport();
 
